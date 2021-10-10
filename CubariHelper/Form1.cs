@@ -101,6 +101,16 @@ namespace CubariHelper
             Console.WriteLine(ex.ToString());
             Log(ex.ToString());
         }
+        public void SaveMangaToFile()
+        {
+            GenerateChapterList(); // Generate Chapters list
+            outputString = JsonConvert.SerializeObject(manga, Formatting.Indented);
+            using (var stream = new StreamWriter(outputFile))
+            {
+                stream.Write(outputString);
+                stream.Close();
+            }
+        }
         public void LoadMangaDetailsFile()
         {
             // Clear prev entries
@@ -477,6 +487,16 @@ namespace CubariHelper
         private void btnCopyOutputString_Click(object sender, EventArgs e)
         {
             Clipboard.SetText(outputString);
+        }
+
+        private void btnMangaSave_Click(object sender, EventArgs e)
+        {
+            manga.title = txtTitle.Text;
+            manga.description = txtSummary.Text;
+            manga.author = txtAuthor.Text;
+            manga.artist = txtArtist.Text;
+            manga.cover = txtCoverLink.Text;
+            SaveMangaToFile();
         }
     }
 }

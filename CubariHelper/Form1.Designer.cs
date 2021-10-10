@@ -153,6 +153,7 @@ namespace CubariHelper
             this.btnMangaSave.TabIndex = 27;
             this.btnMangaSave.Text = "Save Details";
             this.btnMangaSave.UseVisualStyleBackColor = true;
+            this.btnMangaSave.Click += new System.EventHandler(this.btnMangaSave_Click);
             // 
             // label15
             // 
