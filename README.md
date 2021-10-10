@@ -24,6 +24,8 @@
 
 # How to Use
 
+First, open the App. It is named **"CubariHelper.exe"**.
+
 # Creating new manga Cubari gist
 1. Fill up the information on **Manga Details** tab.
 2. Go to **Chapters** tab and fill up information using this guide:
