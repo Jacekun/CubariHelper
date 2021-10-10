@@ -668,7 +668,7 @@ namespace CubariHelper
             this.Controls.Add(this.tabMain);
             this.MinimumSize = new System.Drawing.Size(987, 546);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Cubari Helper, by Jacekun";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Resize += new System.EventHandler(this.Form1_Resize);
             this.tabMain.ResumeLayout(false);
