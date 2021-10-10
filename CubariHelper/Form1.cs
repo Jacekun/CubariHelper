@@ -303,6 +303,9 @@ namespace CubariHelper
             }
             manga.chapters.Add(chapterCount, chapter);
             bindChapters.Add(new KeyValuePair<string, ChapterDetails>(chapterCount, chapter));
+            // Clear prev entry
+            selectedChapter = null;
+            ClearChapterInfo();
         }
 
         private void gridChapters_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -486,7 +489,11 @@ namespace CubariHelper
 
         private void btnCopyOutputString_Click(object sender, EventArgs e)
         {
-            Clipboard.SetText(outputString);
+            if (!String.IsNullOrWhiteSpace(outputString))
+            {
+                Clipboard.SetText(outputString);
+                Alert("Output copied!\nPaste it to your Github repo file.");
+            }
         }
 
         private void btnMangaSave_Click(object sender, EventArgs e)
@@ -497,6 +504,7 @@ namespace CubariHelper
             manga.artist = txtArtist.Text;
             manga.cover = txtCoverLink.Text;
             SaveMangaToFile();
+            Alert("Manga info saved!");
         }
     }
 }
