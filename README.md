@@ -2,6 +2,7 @@
 
 # Pre-requisite
 
+* Microsoft .Net 5 [which can be downloaded from here.](https://dotnet.microsoft.com/download/dotnet/5.0)
 * Download app from [latest release](https://github.com/Jacekun/CubariHelper/releases/latest).
 * Github Account and a repository containing your manga.
 * Time and Patience.
@@ -24,7 +25,7 @@
 
 # How to Use
 
-First, open the App. It is named **"CubariHelper.exe"**.
+Unzip file and open the App. It is named **"CubariHelper.exe"**.
 
 # Creating new manga Cubari gist
 1. Fill up the information on **Manga Details** tab.
