@@ -57,7 +57,7 @@ namespace CubariHelper
             grid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             grid.RowHeadersVisible = false;
             grid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-
+            grid.AllowUserToResizeRows = false;
             grid.DataSource = bindingList;
         }
         public static async Task<string> GenerateGitio(string link)
@@ -94,7 +94,7 @@ namespace CubariHelper
         #region Methods
         public void Log(string log)
         {
-            txtLog.AppendText($"{log}{Environment.NewLine}");
+            txtLog.AppendText($"[{DateTime.Now.ToString("HH:mm:ss,fff")}]: {log}{Environment.NewLine}");
         }
         public void LogErr(Exception ex)
         {
@@ -116,18 +116,21 @@ namespace CubariHelper
             // Clear prev entries
             bindChapters.Clear();
             bindGroups.Clear();
-
             // Load previous file 'details.json'
             outputFile = Path.Combine(Application.StartupPath, "details.json");
+            Log($"Loading Manga details from file => {outputFile}");
             try
             {
                 if (File.Exists(outputFile))
                 {
                     string contents = File.ReadAllText(outputFile);
                     manga = JsonConvert.DeserializeObject<Entity>(contents);
-                    foreach (var item in manga.chapters)
+                    if (manga.chapters != null)
                     {
-                        bindChapters.Add(item);
+                        foreach (var item in manga.chapters)
+                        {
+                            bindChapters.Add(item);
+                        }
                     }
                     txtTitle.Text = manga.title;
                     txtArtist.Text = manga.artist;
@@ -426,6 +429,7 @@ namespace CubariHelper
         private async void btnDownloadFile_Click(object sender, EventArgs e)
         {
             string link = txtGithubUrl.Text;
+            Log($"Downloading file.. => {link}");
             await Task.Run(() =>
             {
                 if (File.Exists(outputFile))
@@ -438,6 +442,7 @@ namespace CubariHelper
                 }
                 Alert("Download complete!");
             });
+            LoadMangaDetailsFile();
         }
 
         private void btnBrowseOutput_Click(object sender, EventArgs e)
