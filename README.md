@@ -1,5 +1,7 @@
 # CubariHelper - Simplify Cubari gist creation with the power of GUI!
 
+![GitHub release](https://img.shields.io/github/v/release/Jacekun/CubariHelper?sort=semver&style=for-the-badge)
+
 # Pre-requisite
 
 * Microsoft .Net 5 [which can be downloaded from here.](https://dotnet.microsoft.com/download/dotnet/5.0)
