@@ -18,8 +18,9 @@ jobs:
           fetch-depth: 0
       - name: Get commit count
         run:  |
-          set -e
-          echo "COMMIT_COUNT=$(git rev-list --count main)" >> $GITHUB_ENV
+          echo "Working Path: ${Env:GITHUB_WORKSPACE}"
+          echo "COMMIT_COUNT=$(git rev-list --count main)" >> $Env:GITHUB_ENV
+          echo "Coomit Count: ${Env:COMMIT_COUNT}"
       - name: Setup Nuget
         uses: Nuget/setup-nuget@v1.0.5
       - name: Restore nuget packages
