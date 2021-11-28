@@ -13,7 +13,10 @@ jobs:
         shell: powershell
         run: Install-Module 7Zip4PowerShell -Force -Verbose
       - uses: actions/checkout@v2
-      
+      - name: Setup Nuget
+        uses: Nuget/setup-nuget@v1.0.5
+      - name: Restore nuget packages
+        run: nuget restore CubariHelper\CubariHelper.csproj
       - name: Build Binary
         shell: cmd
         run: call .\Build.cmd
