@@ -12,6 +12,7 @@ jobs:
       - name: Install 7Zip PowerShell Module
         shell: powershell
         run: Install-Module 7Zip4PowerShell -Force -Verbose
+        
       - name: Checkout repo
         uses: actions/checkout@v2
         with:
@@ -20,11 +21,12 @@ jobs:
         run:  |
           echo "Working Path: ${Env:GITHUB_WORKSPACE}"
           echo "COMMIT_COUNT=$(git rev-list --count main)" >> $Env:GITHUB_ENV
-          echo "Coomit Count: ${Env:COMMIT_COUNT}"
+          
       - name: Setup Nuget
         uses: Nuget/setup-nuget@v1.0.5
       - name: Restore nuget packages
         run: nuget restore CubariHelper\CubariHelper.csproj
+        
       - name: Build Binary
         shell: cmd
         run: call .\Build.cmd
@@ -52,6 +54,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./*.ZIP
+          asset_path: ./CubariHelper_AnyCPU.zip
           asset_name: CubariHelper.ZIP
           asset_content_type: application/zip
